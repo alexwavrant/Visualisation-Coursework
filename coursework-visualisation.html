@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- Add 2 buttons -->
+<!--<div id="button-container">-->
+<!--    <button class="button-24" role="button" onclick="update('Global')">Global</button>-->
+<!--    &lt;!&ndash;<button onclick="update('Global')">Global</button>&ndash;&gt;-->
+<!--    <button class="button-24" role="button" onclick="update('Male')">Male</button>-->
+<!--    <button class="button-24" role="button" onclick="update('Female')">Female</button>-->
+<!--</div>-->
+
+<div id="container">
+    <div id="button-container">
+        <button class="button-24" role="button" onclick="update('Global')">Global</button>
+        <button class="button-24" role="button" onclick="update('Male')">Male</button>
+        <button class="button-24" role="button" onclick="update('Female')">Female</button>
+        <button class="button-24" role="button" onclick="update('College students')">College Students</button>
+        <button class="button-24" role="button" onclick="update('High School students')">High School Students</button>
+        <button class="button-24" role="button" onclick="update('Post-graduate students')">Post-graduate Students</button>
+    </div>
+    <div id="my_dataviz"></div>
+    <div id="text">According to users, which social media has influenced the most their shopping?</div>
+</div>
+
+<!-- Create a div where the graph will take place -->
+<!--<div id="my_dataviz"></div>-->
+
+<script>
+
+    // Initialize text element
+    var text = d3.select("#text");
+
+    // set the dimensions and margins of the graph
+    var margin = {top: 30, right: 30, bottom: 70, left: 60},
+        width = 460 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom;
+
+    // append the svg object to the body of the page
+    var svg = d3.select("#my_dataviz")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
+
+    // Initialize the X axis
+    var x = d3.scaleBand()
+        .range([ 0, width ])
+        .padding(0.2);
+    var xAxis = svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+
+    // Initialize the Y axis
+    var y = d3.scaleLinear()
+        .range([ height, 0]);
+    var yAxis = svg.append("g")
+        .attr("class", "myYaxis")
+
+
+    // A function that create / update the plot for a given variable:
+    function update(selectedVar) {
+
+        // Parse the Data
+        d3.csv("processed-data.csv", function(data) {
+        // d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/barplot_change_data.csv", function(data) {
+
+            console.log(data)
+
+            // X axis
+            x.domain(data.map(function(d) { return d.Answer; }))
+            xAxis.transition().duration(1000).call(d3.axisBottom(x))
+
+            // Add Y axis
+            y.domain([0, d3.max(data, function(d) { return +d[selectedVar] }) ]);
+            yAxis.transition().duration(1000).call(d3.axisLeft(y));
+
+            // variable u: map data to existing bars
+            var u = svg.selectAll("rect")
+                .data(data)
+
+            // update bars
+            u
+                .enter()
+                .append("rect")
+                .merge(u)
+                .transition()
+                .duration(1000)
+                .attr("x", function(d) { return x(d.Answer); })
+                .attr("y", function(d) { return y(d[selectedVar]); })
+                .attr("width", x.bandwidth())
+                .attr("height", function(d) { return height - y(d[selectedVar]); })
+                .attr("fill", "#69b3a2")
+        })
+
+
+        // Update the text
+        text.text(`According to ${selectedVar.toLowerCase()} users, which social media has influenced the most their shopping?`);
+        // text.text("Selected: " + selectedVar);
+    }
+
+    // Initialize plot
+    update('Global')
+
+</script>
+
+<style>
+    .button-24 {
+        background: #FF4742;
+        border: 1px solid #FF4742;
+        border-radius: 6px;
+        box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-block;
+        font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+        font-size: 16px;
+        font-weight: 800;
+        line-height: 16px;
+        min-height: 40px;
+        outline: 0;
+        padding: 12px 14px;
+        text-align: center;
+        text-rendering: geometricprecision;
+        text-transform: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: middle;
+    }
+
+    .button-24:hover,
+    .button-24:active {
+        background-color: initial;
+        background-position: 0 0;
+        color: #FF4742;
+    }
+
+    .button-24:active {
+        opacity: .5;
+    }
+
+    #button-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    #container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #text {
+        /*margin-top: 20px;*/
+        font-size: 24px;
+        font-weight: bold;
+        font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    }
+</style>

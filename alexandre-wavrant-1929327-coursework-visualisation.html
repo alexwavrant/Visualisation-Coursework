@@ -1,16 +1,14 @@
+<!--Alexandre Wavrant-->
+<!--MSc Data Science-->
+<!--Visualisation Coursework-->
+
 <!DOCTYPE html>
 <meta charset="utf-8">
 
+<!--This code is an adaptation of the template from D3.js Graph Gallery website.-->
+<!--The original script can be found here: https://d3-graph-gallery.com/graph/barplot_button_data_hard.html-->
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
-
-<!-- Add 2 buttons -->
-<!--<div id="button-container">-->
-<!--    <button class="button-24" role="button" onclick="update('Global')">Global</button>-->
-<!--    &lt;!&ndash;<button onclick="update('Global')">Global</button>&ndash;&gt;-->
-<!--    <button class="button-24" role="button" onclick="update('Male')">Male</button>-->
-<!--    <button class="button-24" role="button" onclick="update('Female')">Female</button>-->
-<!--</div>-->
 
 <div id="container">
     <div id="button-container">
@@ -28,6 +26,8 @@
 <!-- Create a div where the graph will take place -->
 <!--<div id="my_dataviz"></div>-->
 
+<!--This script is an adaptation of the template from D3.js Graph Gallery website.-->
+<!--The original script can be found here: https://d3-graph-gallery.com/graph/barplot_button_data_hard.html-->
 <script>
 
     // Initialize text element
@@ -66,7 +66,6 @@
 
         // Parse the Data
         d3.csv("processed-data.csv", function(data) {
-        // d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/barplot_change_data.csv", function(data) {
 
             console.log(data)
 
@@ -108,6 +107,8 @@
 </script>
 
 <style>
+    /*This button is an adaptation of the template created by Nomad*/
+    /*The template can be found here: https://getcssscan.com/css-buttons-examples*/
     .button-24 {
         background: #FF4742;
         border: 1px solid #FF4742;
@@ -156,7 +157,6 @@
     }
 
     #text {
-        /*margin-top: 20px;*/
         font-size: 24px;
         font-weight: bold;
         font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;

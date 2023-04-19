@@ -21,6 +21,8 @@
     </div>
     <div id="my_dataviz"></div>
     <div id="text">According to users, which social media has influenced the most their shopping (in %)?</div>
+    <a href="https://data.world/ahalps/social-influence-on-shopping/workspace/file?filename=WhatsgoodlyData-6.csv" class="button-source" target="_blank">Data Source</a>
+    <div class="data-source">Source - data.world: WhatsgoodlyData-6.csv</div>
 </div>
 
 <!-- Create a div where the graph will take place -->
@@ -145,6 +147,48 @@
         opacity: .5;
     }
 
+
+
+    .button-source {
+        margin-top: 20px;
+        background: #3aa3ea;
+        /*background: #FF4742;*/
+        border: 1px solid #3aa3ea;
+        /*border: 1px solid #FF4742;*/
+        border-radius: 6px;
+        box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-block;
+        font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+        font-size: 16px;
+        font-weight: 800;
+        line-height: 16px;
+        min-height: 40px;
+        outline: 0;
+        padding: 12px 14px;
+        text-align: center;
+        text-rendering: geometricprecision;
+        text-transform: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: middle;
+        text-decoration: none;
+    }
+
+    .button-source:hover,
+    .button-source:active {
+        background-color: initial;
+        background-position: 0 0;
+        color: #3aa3ea;
+    }
+
+    .button-source:active {
+        opacity: .5;
+    }
+
     #button-container {
         text-align: center;
         margin-top: 20px;
@@ -160,5 +204,14 @@
         font-size: 24px;
         font-weight: bold;
         font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+        text-align: center;
+    }
+
+    .data-source {
+        margin-top: 20px;
+        font-size: 12px;
+        font-weight: bold;
+        font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+        text-align: center;
     }
 </style>

@@ -23,10 +23,12 @@
     <div id="text">According to users, which social media has influenced the most their shopping (in %)?</div>
     <a href="https://data.world/ahalps/social-influence-on-shopping/workspace/file?filename=WhatsgoodlyData-6.csv" class="button-source" target="_blank">Data Source</a>
     <div class="data-source">Source: data.world (WhatsgoodlyData-6.csv)</div>
+    <div class="data-source">
+        Data Pre-Processing: The dataset has processed to keep answers only from five different demographic groups:
+        male users, female users, high school students, college students, and post-graduate students.
+    </div>
 </div>
 
-<!-- Create a div where the graph will take place -->
-<!--<div id="my_dataviz"></div>-->
 
 <!--This script is an adaptation of the template from D3.js Graph Gallery website.-->
 <!--The original script can be found here: https://d3-graph-gallery.com/graph/barplot_button_data_hard.html-->
@@ -94,7 +96,7 @@
                 .attr("y", function(d) { return y(d[selectedVar]); })
                 .attr("width", x.bandwidth())
                 .attr("height", function(d) { return height - y(d[selectedVar]); })
-                .attr("fill", "#69b3a2")
+                .attr("fill", "#3aa3ea")
         })
 
 
